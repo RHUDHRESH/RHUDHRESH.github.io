@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Rhudhresh R · AI that's trusted to act</title>
+<meta name="description" content="Rhudhresh R builds AI agents and physics-first engineering tools. 3rd at ABB Accelerator Hackathon 2026 (14,000+ registrations), SEMICON India 2026 grand finalist (top 10 of 3,808 teams).">
+<meta property="og:title" content="Rhudhresh R · AI that's trusted to act">
+<meta property="og:description" content="AI agents that approve access, move money and diagnose machines. ABB Hackathon 3rd of 14,000+. SEMICON India grand finalist.">
+<meta property="og:url" content="https://rhudhresh.github.io/">
+<meta name="theme-color" content="#0E1312">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230E1312'/%3E%3Ctext x='8' y='44' font-family='Arial Black,Arial' font-weight='900' font-size='30' fill='%23E7EBE8'%3ERR%3C/text%3E%3Ccircle cx='54' cy='42' r='5' fill='%23E0915A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: dark board, copper traces. Hero thesis + live trace, proof bar, three capabilities, case studies, record, CTA. */
+:root{
+  --bg:#0E1312; --panel:#141B19; --panel2:#1A2320; --ink:#E9EDEA; --muted:#97A29D; --rule:#26302D;
+  --copper:#E0915A; --copper-deep:#B9672F; --copper-glow:rgba(224,145,90,.16); --mask:#6FC59E; --mask-soft:rgba(111,197,158,.12);
+  --display:"Archivo","Arial Black",Arial,sans-serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+@media (prefers-color-scheme:light){:root{
+  --bg:#F4F5F2; --panel:#FFFFFF; --panel2:#F8F6F2; --ink:#15191B; --muted:#5A6266; --rule:#DCE0DC;
+  --copper:#A9561F; --copper-deep:#8A4417; --copper-glow:rgba(169,86,31,.10); --mask:#1E5B45; --mask-soft:#DCEBE3; color-scheme:light}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--copper);outline-offset:3px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--copper)}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
+p{margin:0}
+
+/* Nav */
+nav{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--rule)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.logo{font-family:var(--display);font-weight:900;font-size:20px;text-decoration:none;letter-spacing:-.01em}
+.logo span{color:var(--copper)}
+.links{display:flex;gap:26px;font-size:15px}
+.links a{text-decoration:none;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;padding:11px 18px;border:1px solid var(--rule);transition:border-color .15s,background .15s}
+.btn:hover{border-color:var(--copper)}
+.btn.primary{background:var(--copper);border-color:var(--copper);color:#14100C}
+.btn.primary:hover{background:var(--copper-deep);border-color:var(--copper-deep);color:#fff}
+
+/* Hero */
+.hero{padding-block:84px 40px;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:48px;align-items:end}
+.hero h1{font-weight:900;font-stretch:112%;font-size:clamp(46px,8vw,104px);line-height:.92;letter-spacing:-.025em;margin-top:18px}
+.hero h1 em{font-style:normal;color:var(--copper)}
+.hero .lede{font-size:clamp(18px,2.1vw,21px);color:var(--muted);max-width:40ch;margin-top:26px}
+.hero .lede b{color:var(--ink);font-weight:600}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.badge{border:1px solid var(--rule);background:var(--panel);padding:22px 22px 18px;display:flex;flex-direction:column;gap:14px}
+.badge .row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 14px;align-items:baseline;padding-bottom:14px;border-bottom:1px dashed var(--rule)}
+.badge .row:last-child{border-bottom:0;padding-bottom:0}
+.badge .k{font-size:14.5px}
+.badge .s{grid-column:1;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.badge .v{grid-row:1 / span 2;grid-column:2;font-family:var(--display);font-weight:900;font-size:36px;font-stretch:105%;line-height:1}
+.badge .v.c{color:var(--copper)}
+.trace{display:block;width:100%;height:auto;margin-top:46px}
+.trace path{stroke-dasharray:2600;stroke-dashoffset:2600;animation:draw 2.6s ease-out .3s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* Proof bar */
+.proof{border-block:1px solid var(--rule);background:var(--panel)}
+.proof .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.stat{padding:30px 22px;border-left:1px solid var(--rule);display:flex;flex-direction:column;gap:6px}
+.stat:first-child{border-left:0;padding-left:0}
+.stat .n{font-family:var(--display);font-weight:900;font-size:clamp(38px,4.6vw,56px);line-height:1;font-stretch:108%;letter-spacing:-.02em}
+.stat .n small{font-size:.45em;color:var(--copper);font-stretch:100%;margin-left:4px}
+.stat .l{font-size:14.5px;color:var(--muted);max-width:26ch}
+.stat .l b{color:var(--ink);font-weight:600}
+
+/* Sections */
+section{padding-block:96px}
+.head{display:flex;flex-direction:column;gap:14px;max-width:760px;margin-bottom:46px}
+.head h2{font-weight:850;font-size:clamp(32px,4.4vw,52px);line-height:1.02;letter-spacing:-.02em}
+.head p{color:var(--muted);font-size:18px}
+
+/* Capabilities */
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.cap{background:var(--panel);border:1px solid var(--rule);padding:28px;display:flex;flex-direction:column;gap:14px}
+.cap svg{width:42px;height:42px}
+.cap h3{font-size:23px;font-weight:800;line-height:1.15}
+.cap p{color:var(--muted);font-size:15.5px}
+.cap .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.tag{font-family:var(--mono);font-size:11.5px;padding:3px 8px;border:1px solid var(--rule);color:var(--muted);text-decoration:none}
+a.tag:hover{border-color:var(--copper);color:var(--ink)}
+
+/* Work */
+.work{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.case{background:var(--panel);border:1px solid var(--rule);display:flex;flex-direction:column;min-width:0;transition:border-color .2s,transform .2s}
+.case:hover{border-color:var(--copper);transform:translateY(-2px)}
+.case.feature{grid-column:span 2;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.case .body{padding:28px;display:flex;flex-direction:column;gap:14px}
+.case .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.case .name{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.chip{font-family:var(--mono);font-size:11.5px;padding:3px 9px;border:1px solid var(--rule);color:var(--muted);white-space:nowrap}
+.chip.win{background:var(--mask-soft);border-color:transparent;color:var(--mask);font-weight:500}
+.case h3{font-size:clamp(24px,2.6vw,30px);font-weight:850;line-height:1.08;letter-spacing:-.01em}
+.case p{color:var(--muted);font-size:15.5px}
+.metric{font-family:var(--mono);font-size:13px;background:var(--copper-glow);color:var(--ink);padding:10px 12px;border-left:3px solid var(--copper)}
+.case .go{display:flex;gap:18px;margin-top:auto;padding-top:6px;font-size:14.5px;font-weight:600}
+.case .go a{text-decoration:none;color:var(--copper)}
+.case .go a:hover{text-decoration:underline}
+.visual{border-left:1px solid var(--rule);background:var(--panel2);display:flex;align-items:center;justify-content:center;padding:24px;min-height:280px}
+.visual svg{width:100%;max-width:420px;height:auto}
+
+/* Research callout */
+.callout{margin-top:18px;border:1px solid var(--copper);background:linear-gradient(120deg,var(--copper-glow),transparent 60%);padding:30px 32px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:28px;align-items:center}
+.callout .big{font-family:var(--display);font-weight:900;font-size:clamp(52px,7vw,84px);line-height:.9;color:var(--copper);font-stretch:110%}
+.callout h3{font-size:22px;font-weight:800;margin-bottom:6px}
+.callout p{color:var(--muted);font-size:15.5px}
+
+/* Record */
+.record{display:flex;flex-direction:column;border-top:1px solid var(--rule)}
+.rec{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.2fr) minmax(0,.9fr);gap:20px;padding:18px 0;border-bottom:1px solid var(--rule);align-items:baseline}
+.rec .ev{font-weight:600}
+.rec .bd{color:var(--muted);font-size:15px}
+.rec .hl{font-family:var(--mono);font-size:13px;text-align:right}
+.rec.top .hl{color:var(--mask);font-weight:500}
+.rec.top .ev{font-family:var(--display);font-weight:800;font-size:19px}
+.more{margin-top:22px;color:var(--muted);font-size:15px}
+
+/* Method */
+.method{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px}
+.method h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.method p{color:var(--muted);font-size:15.5px}
+.method code{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:12.5px;color:var(--copper)}
+
+/* Stack */
+.stack{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border:1px solid var(--rule);background:var(--panel)}
+.layer{padding:20px 22px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.layer:nth-child(3n){border-right:0}
+.layer:nth-last-child(-n+3){border-bottom:0}
+.layer .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--copper);margin-bottom:6px}
+.layer .v{font-size:15.5px}
+
+/* CTA */
+.cta{border-top:1px solid var(--rule);background:radial-gradient(800px 300px at 15% 0%,var(--copper-glow),transparent 70%)}
+.cta .wrap{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:40px;align-items:end}
+.cta h2{font-weight:900;font-size:clamp(38px,5.6vw,72px);line-height:.95;letter-spacing:-.025em}
+.cta h2 em{font-style:normal;color:var(--copper)}
+.cta p{color:var(--muted);margin-top:18px;max-width:46ch}
+.cta .side{display:flex;flex-direction:column;gap:12px}
+.cta .side .btn{justify-content:space-between}
+footer{border-top:1px solid var(--rule);padding-block:24px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (max-width:900px){
+  .hero .wrap,.cta .wrap{grid-template-columns:1fr}
+  .proof .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+  .stat:nth-child(n+3){border-top:1px solid var(--rule)}
+  .caps,.method{grid-template-columns:1fr}
+  .work{grid-template-columns:1fr}
+  .case.feature{grid-column:auto;grid-template-columns:1fr}
+  .visual{border-left:0;border-top:1px solid var(--rule);min-height:0}
+  .stack{grid-template-columns:1fr 1fr}
+  .layer:nth-child(n){border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .layer:nth-child(2n){border-right:0}
+  .layer:nth-last-child(-n+2){border-bottom:0}
+  .rec{grid-template-columns:1fr;gap:4px}
+  .rec .hl{text-align:left}
+  .callout{grid-template-columns:1fr;gap:10px}
+  .links{display:none}
+  section{padding-block:68px}
+}
+@media (max-width:520px){
+  .stack{grid-template-columns:1fr}
+  .layer:nth-child(n){border-right:0;border-bottom:1px solid var(--rule)}
+  .layer:last-child{border-bottom:0}
+  .stat{padding:22px 0 22px 16px}
+  .stat:nth-child(odd){padding-left:0;border-left:0}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .trace path{animation:none;stroke-dashoffset:0}
+  .case,.case:hover{transition:none;transform:none}
+  .pulse{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#top">RR<span>.</span></a>
+    <div class="links"><a href="#build">What I build</a><a href="#work">Work</a><a href="#record">Record</a><a href="#stack">Stack</a></div>
+    <a class="btn" href="https://github.com/RHUDHRESH">GitHub ↗</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Rhudhresh R · EEE · Chennai</p>
+      <h1>I build AI that's <em>trusted to act.</em></h1>
+      <p class="lede">Agents that <b>approve access, move money and diagnose machines.</b> Each one runs inside rules a model can't override and ships with evidence anyone can rerun.</p>
+      <div class="ctas">
+        <a class="btn primary" href="#work">See the work →</a>
+        <a class="btn" href="https://github.com/RHUDHRESH">github.com/RHUDHRESH</a>
+      </div>
+    </div>
+    <aside class="badge" aria-label="Headline results">
+      <div class="row"><span class="k">ABB Accelerator Student Hackathon 2026</span><span class="v c">3rd</span><span class="s">of 14,000+ registrations · ₹1,00,000</span></div>
+      <div class="row"><span class="k">SEMICON India Hackathon 2026</span><span class="v">Top 10</span><span class="s">national grand finalist of 3,808 teams</span></div>
+      <div class="row"><span class="k">National competitions in 2026</span><span class="v">19</span><span class="s">SIH · KONE · Mitsubishi · Freshworks</span></div>
+    </aside>
+  </div>
+  <svg class="trace" viewBox="0 0 1600 80" preserveAspectRatio="none" aria-hidden="true">
+    <path id="tr" d="M0 60 H300 L330 30 H720 L750 60 H1080 L1110 42 H1600" fill="none" stroke="var(--copper)" stroke-width="2"/>
+    <g fill="var(--bg)" stroke="var(--copper)" stroke-width="2"><circle cx="330" cy="30" r="6"/><circle cx="750" cy="60" r="6"/><circle cx="1110" cy="42" r="6"/></g>
+    <circle class="pulse" r="5" fill="var(--copper)"><animateMotion dur="6s" begin="2.8s" repeatCount="indefinite"><mpath href="#tr"/></animateMotion></circle>
+  </svg>
+</header>
+
+<div class="proof" aria-label="Proof">
+  <div class="wrap">
+    <div class="stat"><span class="n">14,000<small>+</small></span><span class="l">registrations at ABB, where I placed <b>3rd</b></span></div>
+    <div class="stat"><span class="n">3,808</span><span class="l">teams at SEMICON India. Mine made the <b>national finale</b></span></div>
+    <div class="stat"><span class="n">3</span><span class="l">Indian languages live in my voice agent: <b>English, Hindi, Tamil</b></span></div>
+    <div class="stat"><span class="n">~107k</span><span class="l">lines of Rust in <b>ValeBench</b>, my browser PCB editor</span></div>
+  </div>
+</div>
+
+<section id="build">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">What I build</p>
+      <h2>Three kinds of systems. One standard: prove it.</h2>
+      <p>Electrical engineering taught me that every number has units and every claim has a test. I bring that to AI.</p>
+    </div>
+    <div class="caps">
+      <article class="cap">
+        <svg viewBox="0 0 42 42" fill="none" stroke="var(--copper)" stroke-width="2" aria-hidden="true"><rect x="5" y="9" width="32" height="24"/><path d="M5 17h32M13 25h8M27 22l3 3 5-6"/></svg>
+        <h3>Agents that act under rules</h3>
+        <p>The model reads intent. Deterministic code decides identity, policy and approval, and a named human signs off on what matters. Every action leaves an audit trail.</p>
+        <div class="tags"><a class="tag" href="https://github.com/RHUDHRESH/contextrail">ContextRail</a><a class="tag" href="https://github.com/RHUDHRESH/baton-change-verification">Baton</a><a class="tag" href="https://github.com/RHUDHRESH/FlowLens">FlowLens</a></div>
+      </article>
+      <article class="cap">
+        <svg viewBox="0 0 42 42" fill="none" stroke="var(--copper)" stroke-width="2" aria-hidden="true"><path d="M3 30c6 0 6-18 12-18s6 18 12 18 6-12 12-12"/><circle cx="15" cy="12" r="2.5" fill="var(--copper)"/><path d="M3 37h36"/></svg>
+        <h3>Physics-first engineering AI</h3>
+        <p>Start from the physics, learn only the residual, report the uncertainty. Wafers, batteries, motors, EVs and power feeders, from RS485 wiring up to the browser.</p>
+        <div class="tags"><a class="tag" href="https://github.com/RHUDHRESH/LatticeRank">LatticeRank</a><a class="tag" href="https://github.com/RHUDHRESH/Plantlens">PlantLens</a><a class="tag" href="https://github.com/RHUDHRESH/range-2.0">Range 2.0</a><a class="tag" href="https://github.com/RHUDHRESH/asme-brainbolt-safefit-r">SafeFit-R</a></div>
+      </article>
+      <article class="cap">
+        <svg viewBox="0 0 42 42" fill="none" stroke="var(--copper)" stroke-width="2" aria-hidden="true"><rect x="11" y="4" width="20" height="34" rx="3"/><path d="M18 33h6"/><circle cx="21" cy="17" r="5"/></svg>
+        <h3>Products you can open today</h3>
+        <p>Live demos, real integrations and interfaces built for the person using them, not for the slide deck.</p>
+        <div class="tags"><a class="tag" href="https://rhudhresh.github.io/kasam/">KASAM ↗</a><a class="tag" href="https://inkloom.art">Inkloom ↗</a><a class="tag" href="https://github.com/RHUDHRESH/Raptorflow">RaptorFlow</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="work" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Selected work</p>
+      <h2>Built against the clock. Ready for the demo.</h2>
+    </div>
+    <div class="work">
+      <article class="case feature">
+        <div class="body">
+          <div class="top"><span class="name">ContextRail</span><span class="chip">Freshworks Great Agent Hackathon</span></div>
+          <h3>Say it once, in your language. Get an approved, audited action.</h3>
+          <p>“Give Anil the same access as Rahul.” ContextRail turns one sentence into a Freshservice ticket, a policy-checked plan, a Slack approval and a verifiable record. If two Rahuls exist, it asks which one.</p>
+          <p class="metric">LIVE: Freshservice tickets · Slack approvals · Sarvam voice in EN, HI, TA</p>
+          <div class="go"><a href="https://github.com/RHUDHRESH/contextrail">View repo →</a></div>
+        </div>
+        <div class="visual" aria-hidden="true">
+          <svg viewBox="0 0 420 260" font-family="IBM Plex Mono, monospace" font-size="12">
+            <g fill="none" stroke="var(--rule)"><rect x="10" y="16" width="170" height="44"/><rect x="10" y="108" width="170" height="44"/><rect x="10" y="200" width="170" height="44"/><rect x="240" y="62" width="170" height="44"/><rect x="240" y="154" width="170" height="44"/></g>
+            <g fill="var(--muted)"><text x="22" y="43">voice · EN / HI / TA</text><text x="22" y="135">policy engine · 8 rules</text><text x="22" y="227">audit record</text><text x="252" y="89">Freshservice ticket</text><text x="252" y="181">Slack approval</text></g>
+            <g fill="none" stroke="var(--copper)" stroke-width="2"><path d="M180 38 H210 V84 H240"/><path d="M180 130 H210 V84"/><path d="M210 130 V176 H240"/><path d="M240 176 H220 V222 H180"/></g>
+            <g fill="var(--copper)"><circle cx="210" cy="84" r="4"/><circle cx="210" cy="130" r="4"/></g>
+          </svg>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <div class="top"><span class="name">LatticeRank</span><span class="chip win">SEMICON India · Top 10 of 3,808</span></div>
+          <h3>Wafer navigation recovery across a 10× scale gap.</h3>
+          <p>For Applied Materials' Drift-Sense problem: find a 1 nm/px reference inside a 10 nm/px SEM image, on CPU only, with a synthetic data engine built so no model can cheat.</p>
+          <p class="metric">Grand finale · Yashobhoomi, New Delhi</p>
+          <div class="go"><a href="https://github.com/RHUDHRESH/LatticeRank">View repo →</a><a href="https://github.com/RHUDHRESH/LatticeRank-Drift-Sense-2026">Solvers →</a></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <div class="top"><span class="name">KASAM</span><span class="chip">iQOO Hackathon 2026</span></div>
+          <h3>The video that swears it's real.</h3>
+          <p>Your screen writes a fresh light code into a selfie video. Cut a second out and the timing breaks: <i>Kasam toot gayi</i>, the oath is broken. Runs entirely on the device.</p>
+          <p class="metric">Live demo · fully offline verification</p>
+          <div class="go"><a href="https://rhudhresh.github.io/kasam/">Try it live ↗</a><a href="https://github.com/RHUDHRESH/kasam">Repo →</a></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <div class="top"><span class="name">PlantLens</span><span class="chip">Arduino Physical AI Challenge</span></div>
+          <h3>Factory diagnosis that never touches the machine.</h3>
+          <p>A read-only retrofit that listens on RS485, fingerprints the motor from physics and explains faults through a causal graph.</p>
+          <p class="metric">Running on Arduino UNO Q · offline · read-only</p>
+          <div class="go"><a href="https://github.com/RHUDHRESH/Plantlens">View repo →</a></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <div class="top"><span class="name">FlowLens</span><span class="chip">KONE Elevate'26 · PS13</span></div>
+          <h3>Elevator root cause, not guesswork.</h3>
+          <p>Rebuilds the journey, finds the first causal deviation, ranks hypotheses with evidence for and against, and recommends the safest next diagnostic test.</p>
+          <p class="metric">Evidence-first RCA · non-actuating by design</p>
+          <div class="go"><a href="https://github.com/RHUDHRESH/FlowLens">View repo →</a></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <div class="top"><span class="name">Range 2.0</span><span class="chip">Indian EVs</span></div>
+          <h3>Will your EV make it?</h3>
+          <p>Physics traction, India-specific AC load and a learned residual, with conformal intervals and a “why this number” waterfall for every answer.</p>
+          <p class="metric">Cars and two-wheelers · Drive · Simulate · Lab</p>
+          <div class="go"><a href="https://github.com/RHUDHRESH/range-2.0">View repo →</a></div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="body">
+          <div class="top"><span class="name">SafeFit-R</span><span class="chip">ASME Brain Bolt × Siemens Energy</span></div>
+          <h3>200 battery packs. 50 EVs. Zero unsafe dispatches.</h3>
+          <p>Spotted that the brief's minimum-charge rule was a range requirement in disguise, then built the allocator around it.</p>
+          <p class="metric">min_SoC = 0.633 × range + 18.37 · r = 0.967</p>
+          <div class="go"><a href="https://github.com/RHUDHRESH/asme-brainbolt-safefit-r">View repo →</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="callout">
+      <div class="big mono">14/36</div>
+      <div>
+        <h3>I find where AI breaks before it touches money.</h3>
+        <p>Testing the Swiss Apertus 8B model at Hack Apertus, I showed it approved 14 of 36 over-limit payments when only the number format changed, against 0 of 36 in the standard format. One command reproduces all three findings offline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="record" style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">Competition record · 2026</p>
+      <h2>Nineteen national competitions in one year.</h2>
+    </div>
+    <div class="record">
+      <div class="rec top"><span class="ev">ABB Accelerator Student Hackathon</span><span class="bd">Grand finale at ABB Innovation Center, Bengaluru</span><span class="hl">🥉 3rd · 14,000+ · ₹1,00,000</span></div>
+      <div class="rec top"><span class="ev">SEMICON India Hackathon</span><span class="bd">LatticeRank · Applied Materials · Yashobhoomi, New Delhi</span><span class="hl">🏆 Grand finalist · top 10 of 3,808</span></div>
+      <div class="rec"><span class="ev">Smart India Hackathon</span><span class="bd">HELIOROUTE + Edge Voice Handoff</span><span class="hl">2 problem statements</span></div>
+      <div class="rec"><span class="ev">Mitsubishi Electric AutomationX</span><span class="bd">Proof of Repair</span><span class="hl">Smart-factory repair evidence</span></div>
+      <div class="rec"><span class="ev">Freshworks Great Agent Hackathon</span><span class="bd">ContextRail</span><span class="hl">Live Freshservice + Slack + Sarvam</span></div>
+      <div class="rec"><span class="ev">KONE Elevate'26</span><span class="bd">FlowLens</span><span class="hl">Evidence-first elevator RCA</span></div>
+      <div class="rec"><span class="ev">Arduino Physical AI Challenge</span><span class="bd">PlantLens</span><span class="hl">Running on UNO Q hardware</span></div>
+      <div class="rec"><span class="ev">ASME Brain Bolt × Siemens Energy</span><span class="bd">SafeFit-R</span><span class="hl">Zero unsafe dispatches</span></div>
+      <div class="rec"><span class="ev">Namma AI Hackathon</span><span class="bd">Offline waste classifier on Raspberry Pi</span><span class="hl">Team leader</span></div>
+      <div class="rec"><span class="ev">Hack Apertus</span><span class="bd">Apertus Charter Check</span><span class="hl">3/3 findings reproduced offline</span></div>
+    </div>
+    <p class="more">Also built for: iQOO · GraphHacks · atomQUEST · Schneider Electric Yuva Yodha · Amazon ML Challenge · Tata Teliport S4 · Redrob India Runs · Seva First · RISE</p>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="head">
+      <p class="eyebrow">How I work</p>
+      <h2>Judges don't have to trust me. They can check.</h2>
+    </div>
+    <div class="method">
+      <div><h3>Proof over claims</h3><p>Every integration is labelled by what actually ran, so anyone can see in seconds which APIs were called live.</p><code>LIVE · FIXTURE · PLANNED</code></div>
+      <div><h3>Rerun, don't believe</h3><p>One command rebuilds the results offline and prints a fingerprint to compare against the published one.</p><code>make run → REPRODUCED 3/3</code></div>
+      <div><h3>Fail closed</h3><p>When evidence is thin, my systems ask, hold or refuse. They never fill the gap with a confident guess.</p><code>ask · hold · refuse · approve</code></div>
+    </div>
+  </div>
+</section>
+
+<section id="stack" style="padding-top:0">
+  <div class="wrap">
+    <div class="head"><p class="eyebrow">Stack</p><h2>From RS485 to React.</h2></div>
+    <div class="stack">
+      <div class="layer"><div class="k">Languages</div><div class="v">Python · TypeScript · Rust · C++ · Verilog</div></div>
+      <div class="layer"><div class="k">Agents & AI</div><div class="v">Claude · Groq · Sarvam · LangGraph · Ollama</div></div>
+      <div class="layer"><div class="k">Backend</div><div class="v">FastAPI · Django Ninja · Rust Axum · MCP</div></div>
+      <div class="layer"><div class="k">Frontend</div><div class="v">React 19 · Next.js · Vite · WebAssembly</div></div>
+      <div class="layer"><div class="k">Data & infra</div><div class="v">Postgres/pgvector · Qdrant · FalkorDB · Docker · AWS · Vercel</div></div>
+      <div class="layer"><div class="k">Hardware & EDA</div><div class="v">Arduino UNO Q · RS485 · KiCad · ngspice · Altium</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Let's build</p>
+      <h2>Need someone who ships <em>by the demo?</em></h2>
+      <p>Agents, payments, Indian-language voice, hardware or all four at once. I'm open to hackathon teams, internships and serious collaborations.</p>
+    </div>
+    <div class="side">
+      <a class="btn primary" href="https://github.com/RHUDHRESH">GitHub · RHUDHRESH <span>↗</span></a>
+      <a class="btn" href="https://rhudhresh.github.io/kasam/">Try KASAM live <span>↗</span></a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Rhudhresh R · Chennai, India</span><span>Hand-built. No templates.</span></div></footer>
+</body>
+</html>
